@@ -8,7 +8,6 @@
 
 #import "MovieDetailsViewController.h"
 
-
 //Networking
 #import "NetworkingManager.h"
 

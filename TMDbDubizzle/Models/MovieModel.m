@@ -33,8 +33,6 @@
 #import "MovieModel.h"
 
 @interface MovieModel ()
-
-
 @end
 
 @implementation MovieModel

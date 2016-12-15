@@ -29,32 +29,22 @@
                                             completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         
         NSError *jsonError;
-        
         if (data) {
             NSDictionary *jsonData = [NSJSONSerialization JSONObjectWithData:data
                                                                      options:NSJSONReadingMutableContainers
                                                                        error:&jsonError];
             
-            if (jsonError) {
-                NSLog(@"---- The error is %@", jsonError);
-            } else {
+            if (jsonData) {
                 
                 NSError *mtlError;
-                
                 ListOfMoviesModel *listOfMovies = [MTLJSONAdapter modelOfClass:ListOfMoviesModel.class
                                                             fromJSONDictionary:jsonData
                                                                          error:&mtlError];
-                
                 if (!mtlError) {
                     completion(listOfMovies);
-                } else {
-                    NSLog(@"---- The error is %@", mtlError);
-                    
                 }
             }
-            
         }
-        
     }];
     [task resume];
 }
@@ -63,7 +53,6 @@
     NSString *baseUrl = [NSString stringWithFormat:@"%@/%@/videos?api_key=%@&language=en-US",kBaseURLMovie, movieID, kTMDBApiKey];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:baseUrl]];
     [request setHTTPMethod:@"GET"];
-    
     NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:nil delegateQueue:[NSOperationQueue mainQueue]];
     NSURLSessionDataTask *task = [session dataTaskWithRequest:request
                                             completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
