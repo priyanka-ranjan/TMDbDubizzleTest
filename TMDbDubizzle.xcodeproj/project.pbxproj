@@ -18,6 +18,7 @@
 		BBC0B8281E0296AE00D187BF /* MovieCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BBC0B8261E0296AE00D187BF /* MovieCollectionViewCell.m */; };
 		BBC0B8291E0296AE00D187BF /* MovieCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBC0B8271E0296AE00D187BF /* MovieCollectionViewCell.xib */; };
 		BBC0BCD41E029D7900D187BF /* ListOfMoviesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BBC0BCD31E029D7900D187BF /* ListOfMoviesModel.m */; };
+		E8A62EEB4CEB4B164CBE49DB /* libPods-TMDbDubizzle.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 450D8CADDCA4CAD7B6A075A3 /* libPods-TMDbDubizzle.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -34,6 +35,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		170437574752FCCAD5CAA8AD /* Pods-TMDbDubizzle.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TMDbDubizzle.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TMDbDubizzle/Pods-TMDbDubizzle.debug.xcconfig"; sourceTree = "<group>"; };
+		450D8CADDCA4CAD7B6A075A3 /* libPods-TMDbDubizzle.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TMDbDubizzle.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB67AA7E1E027B6C007322BD /* TMDbDubizzle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TMDbDubizzle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB67AA821E027B6C007322BD /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		BB67AA841E027B6C007322BD /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -53,6 +56,7 @@
 		BBC0B8271E0296AE00D187BF /* MovieCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MovieCollectionViewCell.xib; sourceTree = "<group>"; };
 		BBC0BCD21E029D7900D187BF /* ListOfMoviesModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListOfMoviesModel.h; sourceTree = "<group>"; };
 		BBC0BCD31E029D7900D187BF /* ListOfMoviesModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListOfMoviesModel.m; sourceTree = "<group>"; };
+		BD3A8A9DA9C90D89A8B4EA67 /* Pods-TMDbDubizzle.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TMDbDubizzle.release.xcconfig"; path = "Pods/Target Support Files/Pods-TMDbDubizzle/Pods-TMDbDubizzle.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,17 +64,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E8A62EEB4CEB4B164CBE49DB /* libPods-TMDbDubizzle.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		429E19BF55EAAE3F4579CE17 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				170437574752FCCAD5CAA8AD /* Pods-TMDbDubizzle.debug.xcconfig */,
+				BD3A8A9DA9C90D89A8B4EA67 /* Pods-TMDbDubizzle.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		BB67AA751E027B6C007322BD = {
 			isa = PBXGroup;
 			children = (
 				BB67AA801E027B6C007322BD /* TMDbDubizzle */,
 				BB67AA7F1E027B6C007322BD /* Products */,
+				429E19BF55EAAE3F4579CE17 /* Pods */,
+				D7417116C5C422844452A111 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -147,6 +163,14 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		D7417116C5C422844452A111 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				450D8CADDCA4CAD7B6A075A3 /* libPods-TMDbDubizzle.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -154,10 +178,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = BB67AA951E027B6C007322BD /* Build configuration list for PBXNativeTarget "TMDbDubizzle" */;
 			buildPhases = (
+				C71A56E4AE61A3B388BE059E /* [CP] Check Pods Manifest.lock */,
 				BB67AA7A1E027B6C007322BD /* Sources */,
 				BB67AA7B1E027B6C007322BD /* Frameworks */,
 				BB67AA7C1E027B6C007322BD /* Resources */,
 				BBC0BC991E0299E600D187BF /* Embed Frameworks */,
+				207B94E6DF9E175722B9B26A /* [CP] Embed Pods Frameworks */,
+				F49FFAF57AA62BC16244AA77 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -215,6 +242,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		207B94E6DF9E175722B9B26A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TMDbDubizzle/Pods-TMDbDubizzle-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C71A56E4AE61A3B388BE059E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		F49FFAF57AA62BC16244AA77 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TMDbDubizzle/Pods-TMDbDubizzle-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		BB67AA7A1E027B6C007322BD /* Sources */ = {
@@ -343,6 +418,7 @@
 		};
 		BB67AA961E027B6C007322BD /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 170437574752FCCAD5CAA8AD /* Pods-TMDbDubizzle.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 7RT43N8KSR;
@@ -355,6 +431,7 @@
 		};
 		BB67AA971E027B6C007322BD /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BD3A8A9DA9C90D89A8B4EA67 /* Pods-TMDbDubizzle.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 7RT43N8KSR;
