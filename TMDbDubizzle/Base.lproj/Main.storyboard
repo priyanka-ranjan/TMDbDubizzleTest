@@ -28,7 +28,6 @@
         <!--List View Controller-->
         <scene sceneID="71L-2x-wbg">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="t1E-La-3Iw" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="rqA-7c-30b" customClass="ListViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="YoC-Jq-5hU"/>
@@ -67,13 +66,81 @@
                             <constraint firstItem="usL-KC-OCi" firstAttribute="leading" secondItem="Sj0-mb-cot" secondAttribute="leading" id="zug-bz-HeW"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="SN0-VU-LVe"/>
+                    <navigationItem key="navigationItem" id="SN0-VU-LVe">
+                        <barButtonItem key="rightBarButtonItem" title="Filter" id="nKe-5o-eUU">
+                            <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <connections>
+                                <action selector="filterButtonTapped:" destination="rqA-7c-30b" id="zOZ-nX-iiO"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="listCollectionView" destination="usL-KC-OCi" id="QVy-GK-Y6b"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="t1E-La-3Iw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1414" y="73"/>
+        </scene>
+        <!--Filter View Controller-->
+        <scene sceneID="X40-9w-HRn">
+            <objects>
+                <viewController storyboardIdentifier="FilterViewController" id="Xqp-FR-uoc" customClass="FilterViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="3AN-tZ-6xA"/>
+                        <viewControllerLayoutGuide type="bottom" id="piA-Ab-JSN"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="DAD-jO-5cA">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Min Year" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C7d-TI-VUA">
+                                <rect key="frame" x="63" y="237" width="66" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CaD-hJ-8wZ">
+                                <rect key="frame" x="218" y="232" width="97" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Max Year" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c9A-Kq-Wrw">
+                                <rect key="frame" x="63" y="290" width="71" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VUp-G9-DEU">
+                                <rect key="frame" x="218" y="285" width="97" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YqF-xN-yn2">
+                                <rect key="frame" x="169" y="397" width="37" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Done"/>
+                                <connections>
+                                    <action selector="doneButtonTapped:" destination="Xqp-FR-uoc" eventType="touchUpInside" id="rhB-G1-n7A"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="0.91626569410000003" blue="0.2491379316" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                    <connections>
+                        <outlet property="maxYearTextField" destination="VUp-G9-DEU" id="cqf-bD-sLZ"/>
+                        <outlet property="minYearTextField" destination="CaD-hJ-8wZ" id="Uv2-d3-t4t"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Csv-fX-xXE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-588" y="72"/>
         </scene>
     </scenes>
 </document>

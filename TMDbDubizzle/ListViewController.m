@@ -18,7 +18,10 @@
 //Views
 #import "MovieCollectionViewCell.h"
 
-@interface ListViewController () <UICollectionViewDelegate, UICollectionViewDataSource>
+//View Controllers
+#import "FilterViewController.h"
+
+@interface ListViewController () <UICollectionViewDelegate, UICollectionViewDataSource, FilterViewControllerProtocol>
 
 @property (weak, nonatomic) IBOutlet UICollectionView *listCollectionView;
 @property (nonatomic, strong) ListOfMoviesModel *listModel;
@@ -81,5 +84,25 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     
 }
+
+#pragma mark - IBActions
+
+- (IBAction)filterButtonTapped:(id)sender {
+    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+    FilterViewController *filterViewController = [mainStoryboard instantiateViewControllerWithIdentifier:NSStringFromClass([FilterViewController class])];
+    filterViewController.delegate = self;
+    [self presentViewController:filterViewController animated:YES completion:nil];
+
+}
+
+#pragma mark - <FilterViewControllerProtocol>
+
+- (void)filteredWithMinYear:(NSString *)minYear maxYear:(NSString *)maxYear {
+    
+    //Parse the data based on years
+    //[self.listCollectionView reloadData];
+    
+}
+
 
 @end

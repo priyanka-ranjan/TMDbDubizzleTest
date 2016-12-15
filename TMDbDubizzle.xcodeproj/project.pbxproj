@@ -13,6 +13,7 @@
 		BB67AA8C1E027B6C007322BD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB67AA8A1E027B6C007322BD /* Main.storyboard */; };
 		BB67AA8E1E027B6C007322BD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BB67AA8D1E027B6C007322BD /* Assets.xcassets */; };
 		BB67AA911E027B6C007322BD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB67AA8F1E027B6C007322BD /* LaunchScreen.storyboard */; };
+		BBBA664E1E02B52300344FCF /* FilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBBA664D1E02B52300344FCF /* FilterViewController.m */; };
 		BBC0B81F1E02812D00D187BF /* NetworkingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BBC0B81E1E02812D00D187BF /* NetworkingManager.m */; };
 		BBC0B8231E028D1E00D187BF /* MovieModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BBC0B8221E028D1E00D187BF /* MovieModel.m */; };
 		BBC0B8281E0296AE00D187BF /* MovieCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BBC0B8261E0296AE00D187BF /* MovieCollectionViewCell.m */; };
@@ -47,6 +48,8 @@
 		BB67AA8D1E027B6C007322BD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BB67AA901E027B6C007322BD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BB67AA921E027B6C007322BD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BBBA664C1E02B52300344FCF /* FilterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterViewController.h; sourceTree = "<group>"; };
+		BBBA664D1E02B52300344FCF /* FilterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterViewController.m; sourceTree = "<group>"; };
 		BBC0B81D1E02812D00D187BF /* NetworkingManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkingManager.h; sourceTree = "<group>"; };
 		BBC0B81E1E02812D00D187BF /* NetworkingManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkingManager.m; sourceTree = "<group>"; };
 		BBC0B8211E028D1E00D187BF /* MovieModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovieModel.h; sourceTree = "<group>"; };
@@ -138,6 +141,8 @@
 			children = (
 				BB67AA871E027B6C007322BD /* ListViewController.h */,
 				BB67AA881E027B6C007322BD /* ListViewController.m */,
+				BBBA664C1E02B52300344FCF /* FilterViewController.h */,
+				BBBA664D1E02B52300344FCF /* FilterViewController.m */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -302,6 +307,7 @@
 				BBC0BCD41E029D7900D187BF /* ListOfMoviesModel.m in Sources */,
 				BBC0B8231E028D1E00D187BF /* MovieModel.m in Sources */,
 				BB67AA831E027B6C007322BD /* main.m in Sources */,
+				BBBA664E1E02B52300344FCF /* FilterViewController.m in Sources */,
 				BBC0B8281E0296AE00D187BF /* MovieCollectionViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
