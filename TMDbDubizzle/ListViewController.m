@@ -31,6 +31,7 @@
 @property (nonatomic, strong) UIActivityIndicatorView *activityIndicatorView;
 @property (nonatomic, strong) NSString *titleText;
 @property (nonatomic, strong) NSMutableArray *filteredListOfMovies;
+@property (nonatomic, strong) NSMutableArray *originalListOfMovies;
 
 @end
 
@@ -74,6 +75,7 @@
     [self.activityIndicatorView startAnimating];
     [NetworkingManager loadListOfMoviesBasedOnMovieListType:movieListType withCompletionHandler:^(ListOfMoviesModel *response) {
         weakself.filteredListOfMovies = [response.listOfMovies mutableCopy];
+        weakself.originalListOfMovies = [response.listOfMovies mutableCopy];
         [weakself.listCollectionView reloadData];
         [weakself.activityIndicatorView stopAnimating];
     }];
@@ -134,6 +136,7 @@
 - (IBAction)filterButtonTapped:(id)sender {
     UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
     FilterViewController *filterViewController = [mainStoryboard instantiateViewControllerWithIdentifier:NSStringFromClass([FilterViewController class])];
+    filterViewController.modalPresentationStyle =UIModalPresentationOverCurrentContext;
     filterViewController.delegate = self;
     [self presentViewController:filterViewController animated:YES completion:nil];
 
@@ -142,10 +145,9 @@
 #pragma mark - <FilterViewControllerProtocol>
 
 - (void)filteredWithMinYear:(NSDate *)minDate maxYear:(NSDate *)maxDate {
-    
+
     NSMutableArray *dateBasedFilteredListOfMovies = [NSMutableArray array];
-    
-    for (MovieModel *movie in self.filteredListOfMovies) {
+    for (MovieModel *movie in self.originalListOfMovies) {
         BOOL isAfterMinDate = [movie.releaseDate compare:minDate] == NSOrderedDescending;
         BOOL isBeforeMaxDate = [movie.releaseDate compare:maxDate] == NSOrderedAscending;
         if(isAfterMinDate && isBeforeMaxDate) {
@@ -155,13 +157,11 @@
     
     self.filteredListOfMovies = dateBasedFilteredListOfMovies;
     [self.listCollectionView reloadData];
-    
 }
 
 #pragma mark - Helpers
 
 - (void)addTitleBasedOnMovieListType:(MovieListType)movieListType {
-    
     switch (movieListType) {
         case MovieListTypePopular:
             self.titleText = @"Popular";
@@ -178,8 +178,6 @@
         default:
             break;
     }
-    
 }
-
 
 @end
