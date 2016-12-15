@@ -15,45 +15,42 @@
 @interface MovieDetailsViewController ()
 
 @property (nonatomic, strong) MovieModel *movieModel;
+@property (nonatomic, strong) ListOfMovieVideos *listOfMovieVideos;
+@property (nonatomic, strong) UIActivityIndicatorView *activityIndicatorView;
 
-@property (weak, nonatomic) IBOutlet UIImageView *posterImage;
 @property (weak, nonatomic) IBOutlet UILabel *movieTitle;
-@property (weak, nonatomic) IBOutlet UILabel *movieOverview;
+@property (weak, nonatomic) IBOutlet UITextView *movieOverview;
 @property (weak, nonatomic) IBOutlet UILabel *releaseDate;
 @property (weak, nonatomic) IBOutlet UILabel *voteCount;
 @property (weak, nonatomic) IBOutlet UIWebView *playerWebview;
 
-@property (nonatomic, strong) ListOfMovieVideos *listOfMovieVideos;
 @end
 
 @implementation MovieDetailsViewController
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
+- (void)viewDidLoad {
+    [super viewDidLoad];
     [self setupViewBasedOnMovie];
-}
 
-#pragma mark - Setup
-
-- (void)setupWithMovieModel:(MovieModel *)movieModel {
-    self.movieModel = movieModel;
-    
     __weak typeof(self) weakSelf = self;
-    [NetworkingManager loadMovieVideosFromMovieId:[movieModel.movieId stringValue]
+    [NetworkingManager loadMovieVideosFromMovieId:[self.movieModel.movieId stringValue]
                             withCompletionHandler:^(ListOfMovieVideos *response) {
                                 weakSelf.listOfMovieVideos = response;
                                 
                                 dispatch_async(dispatch_get_main_queue(), ^{
                                     [weakSelf setupPlayerView];
                                 });
-                                
+                            }];
+}
 
-    }];
+#pragma mark - Setup
+
+- (void)setupWithMovieModel:(MovieModel *)movieModel {
+    self.movieModel = movieModel;
 }
 
 - (void)setupPlayerView {
     NSURL *youtubeURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://www.youtube.com/embed/%@",[self youtubeIdFromMovieVideos]]];
-    self.playerWebview.allowsInlineMediaPlayback = YES;
     [self.playerWebview loadRequest:[NSURLRequest requestWithURL:youtubeURL]];
 }
 
