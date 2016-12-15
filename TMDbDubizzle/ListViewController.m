@@ -41,11 +41,6 @@
     [super viewDidLoad];
     [self setupCollectionView];
     [self setupActivityIndicator];
-    
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
     self.listTitleLabel.text = self.titleText;
 }
 
@@ -56,11 +51,6 @@
 
 #pragma mark - Setup
 
-- (void)setupActivityIndicator {
-    self.activityIndicatorView = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(self.view.frame.size.width/2 - 20, self.view.frame.size.height/2 - 20, 40, 40)];
-    [self.view addSubview:self.activityIndicatorView];
-}
-
 - (void)setupCollectionView {
     self.listCollectionView.delegate = self;
     self.listCollectionView.dataSource = self;
@@ -68,6 +58,29 @@
                                 bundle:[NSBundle mainBundle]];
     [self.listCollectionView registerNib:nib
               forCellWithReuseIdentifier:NSStringFromClass([MovieCollectionViewCell class])];
+}
+
+- (void)setupActivityIndicator {
+    self.activityIndicatorView = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(self.view.frame.size.width/2 - 20, self.view.frame.size.height/2 - 20, 40, 40)];
+    self.activityIndicatorView.hidden = NO;
+    self.activityIndicatorView.hidesWhenStopped = YES;
+    [self.view addSubview:self.activityIndicatorView];
+}
+
+- (void)setupFilterBarButtonItem {
+    UIBarButtonItem *filterBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Filter"
+                                                                            style:UIBarButtonItemStyleDone
+                                                                           target:self
+                                                                           action:@selector(filterButtonTapped:)];
+    filterBarButtonItem.tintColor = [UIColor blackColor];
+    self.parentViewController.navigationItem.rightBarButtonItem = filterBarButtonItem;
+    UIBarButtonItem *resetBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Reset"
+                                                                            style:UIBarButtonItemStyleDone
+                                                                           target:self
+                                                                           action:@selector(resetButtonTapped:)];
+    resetBarButtonItem.tintColor = [UIColor blackColor];
+    self.parentViewController.navigationItem.leftBarButtonItem = resetBarButtonItem;
+    self.parentViewController.navigationItem.title = @"Movies";
 }
 
 - (void)setupMovieListBasedOnMovieListType:(MovieListType)movieListType {
@@ -81,17 +94,6 @@
     }];
     
     [self addTitleBasedOnMovieListType:movieListType];
-    
-}
-
-- (void)setupFilterBarButtonItem {
-    UIBarButtonItem *filterBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Filter"
-                                                                            style:UIBarButtonItemStyleDone
-                                                                           target:self
-                                                                           action:@selector(filterButtonTapped:)];
-    filterBarButtonItem.tintColor = [UIColor blackColor];
-    self.parentViewController.navigationItem.rightBarButtonItem = filterBarButtonItem;
-    self.parentViewController.navigationItem.title= @"Movies";
 }
 
 #pragma mark - <UICollectionViewDataSource>
@@ -109,7 +111,6 @@
                                                                               forIndexPath:indexPath];
     MovieModel *currentMovie = self.filteredListOfMovies[indexPath.row];
     [cell setupCellWithMovieModel:currentMovie];
-    
     return cell;
 }
 
@@ -128,8 +129,6 @@
     MovieDetailsViewController *movieDetailsViewController = [mainStoryboard instantiateViewControllerWithIdentifier:NSStringFromClass([MovieDetailsViewController class])];
     [movieDetailsViewController setupWithMovieModel:currentMovie];
     [self.navigationController pushViewController:movieDetailsViewController animated:YES];
-    
-    
 }
 
 #pragma mark - IBActions
@@ -140,13 +139,17 @@
     filterViewController.modalPresentationStyle =UIModalPresentationOverCurrentContext;
     filterViewController.delegate = self;
     [self presentViewController:filterViewController animated:YES completion:nil];
-
 }
+
+- (void)resetButtonTapped:(id)sender {
+    self.filteredListOfMovies = self.originalListOfMovies;
+    [self.listCollectionView reloadData];
+}
+
 
 #pragma mark - <FilterViewControllerProtocol>
 
 - (void)filteredWithMinYear:(NSDate *)minDate maxYear:(NSDate *)maxDate {
-
     NSMutableArray *dateBasedFilteredListOfMovies = [NSMutableArray array];
     for (MovieModel *movie in self.originalListOfMovies) {
         BOOL isAfterMinDate = [movie.releaseDate compare:minDate] == NSOrderedDescending;
@@ -155,7 +158,6 @@
             [dateBasedFilteredListOfMovies addObject:movie];
         }
     }
-    
     self.filteredListOfMovies = dateBasedFilteredListOfMovies;
     [self.listCollectionView reloadData];
 }

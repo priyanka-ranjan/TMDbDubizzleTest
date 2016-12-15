@@ -9,9 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @protocol FilterViewControllerProtocol <NSObject>
-
 - (void)filteredWithMinYear:(NSDate *)minYear maxYear:(NSDate *)maxYear;
-
 @end
 
 @interface FilterViewController : UIViewController

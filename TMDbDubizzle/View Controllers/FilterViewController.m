@@ -13,12 +13,12 @@
 @property (weak, nonatomic) IBOutlet UITextField *minYearTextField;
 @property (weak, nonatomic) IBOutlet UITextField *maxYearTextField;
 @property (weak, nonatomic) IBOutlet UIView *centreView;
+@property (weak, nonatomic) IBOutlet UILabel *errorLabel;
 
 @property (nonatomic, strong) UIDatePicker *datePicker;
-
 @property (nonatomic, strong) NSDate *minYearDate;
 @property (nonatomic, strong) NSDate *maxYearDate;
-@property (weak, nonatomic) IBOutlet UILabel *errorLabel;
+
 @end
 
 @implementation FilterViewController
@@ -27,30 +27,32 @@
     [super viewDidLoad];
     
     [self setupDatePicker];
+    [self setupBorder];
+    
     [self.minYearTextField setInputView:self.datePicker];
     [self.maxYearTextField setInputView:self.datePicker];
-    self.centreView.layer.cornerRadius = 10.0f;
-    self.centreView.layer.borderColor = [UIColor blackColor].CGColor;
-    self.centreView.layer.borderWidth = 1.0f;
     self.errorLabel.textColor = [UIColor redColor];
-    
 }
 
 #pragma mark - Setup
 
 - (void)setupDatePicker {
-    self.datePicker = [[UIDatePicker alloc] initWithFrame:CGRectMake(0, 250, 325, 300)];
+    self.datePicker = [[UIDatePicker alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height - 250, self.view.frame.size.width, 250)];
     self.datePicker.datePickerMode = UIDatePickerModeDate;
     self.datePicker.hidden = NO;
     [self.datePicker setMaximumDate:[NSDate date]];
-    
     [self.datePicker addTarget:self action:@selector(dateTextField:) forControlEvents:UIControlEventValueChanged];
 }
 
+- (void)setupBorder {
+    self.centreView.layer.cornerRadius = 10.0f;
+    self.centreView.layer.borderColor = [UIColor blackColor].CGColor;
+    self.centreView.layer.borderWidth = 1.0f;
+}
 
 #pragma mark - Delegates
 
--(void)dateTextField:(id)sender {
+- (void)dateTextField:(id)sender {
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
     NSDate *eventDate = self.datePicker.date;
     [dateFormat setDateFormat:@"dd/MM/yyyy"];
@@ -83,4 +85,5 @@
 - (IBAction)cancelButtonTapped:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
+
 @end

@@ -12,17 +12,17 @@
 //Networking
 #import "NetworkingManager.h"
 
-@interface MovieDetailsViewController ()
+@interface MovieDetailsViewController () <UIWebViewDelegate>
 
 @property (nonatomic, strong) MovieModel *movieModel;
 @property (nonatomic, strong) ListOfMovieVideos *listOfMovieVideos;
-@property (nonatomic, strong) UIActivityIndicatorView *activityIndicatorView;
 
 @property (weak, nonatomic) IBOutlet UILabel *movieTitle;
 @property (weak, nonatomic) IBOutlet UITextView *movieOverview;
 @property (weak, nonatomic) IBOutlet UILabel *releaseDate;
 @property (weak, nonatomic) IBOutlet UILabel *voteCount;
 @property (weak, nonatomic) IBOutlet UIWebView *playerWebview;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 
 @end
 
@@ -31,7 +31,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setupViewBasedOnMovie];
-
+    self.playerWebview.delegate = self;
+    [self.activityIndicator startAnimating];
+    
     __weak typeof(self) weakSelf = self;
     [NetworkingManager loadMovieVideosFromMovieId:[self.movieModel.movieId stringValue]
                             withCompletionHandler:^(ListOfMovieVideos *response) {
@@ -72,6 +74,12 @@
         }
     }
     return nil;
+}
+
+#pragma mark - <UIWebviewDelegate >
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView {
+    [self.activityIndicator stopAnimating];
 }
 
 @end

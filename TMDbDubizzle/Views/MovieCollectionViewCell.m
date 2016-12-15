@@ -28,17 +28,17 @@
 - (void)prepareForReuse {
     [super prepareForReuse];
     self.movieTitle.text = nil;
-    self.backgroundImage.image = [UIImage imageNamed:@"placeholderImage.png"];
+    self.backgroundImage.image = nil;
     self.releaseDate.text = nil;
     self.voteAverage.text = nil;
 }
 
 - (void)setupCellWithMovieModel:(MovieModel *)movie {
+    self.backgroundImage.image = [UIImage imageNamed:@"placeholderImage.png"];
     self.movieTitle.text = movie.title;
     self.releaseDate.text = [NSString stringWithFormat:@"Release Date: %@",[self configureReleaseDateLabelWithDate:movie.releaseDate]];
-    self.voteAverage.text = [NSString stringWithFormat:@"Vote Average: %@", [movie.voteAverage stringValue]];
+    self.voteAverage.text = [NSString stringWithFormat:@"Vote Avg: %@", [movie.voteAverage stringValue]];
     [self configureMovieImageWithPath:movie.backdropPath];
-    
 }
 
 - (NSString *)configureReleaseDateLabelWithDate:(NSDate *)releaseDate {
@@ -48,14 +48,13 @@
 }
 
 - (void)configureMovieImageWithPath:(NSString *)backdropPath {
-    self.backgroundImage.image = [UIImage imageNamed:@"placeholderImage.png"];
-    NSString *imagePathString = [NSString stringWithFormat:@"https://image.tmdb.org/t/p/w500%@",backdropPath];
-    NSURL *imageURL = [NSURL URLWithString:imagePathString];
+    __weak typeof(self) weakSelf = self;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+        NSString *imagePathString = [NSString stringWithFormat:@"https://image.tmdb.org/t/p/w500%@",backdropPath];
+        NSURL *imageURL = [NSURL URLWithString:imagePathString];
         NSData *imageData = [NSData dataWithContentsOfURL:imageURL];
         dispatch_async(dispatch_get_main_queue(), ^{
-            UIImage *image = [UIImage imageWithData:imageData];
-            self.backgroundImage.image = image;
+            weakSelf.backgroundImage.image = [UIImage imageWithData:imageData];
         });
     });
 }

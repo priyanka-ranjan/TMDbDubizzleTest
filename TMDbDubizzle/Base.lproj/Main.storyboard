@@ -24,7 +24,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="S6k-jb-Idn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2404" y="-590"/>
+            <point key="canvasLocation" x="-3374" y="72"/>
         </scene>
         <!--Main Page View Controller-->
         <scene sceneID="hta-G7-mC9">
@@ -34,7 +34,7 @@
                 </pageViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vgn-oe-ZU3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1538" y="-591"/>
+            <point key="canvasLocation" x="-2489" y="72"/>
         </scene>
         <!--List View Controller-->
         <scene sceneID="71L-2x-wbg">
@@ -101,7 +101,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="t1E-La-3Iw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1538" y="72"/>
+            <point key="canvasLocation" x="-1636" y="72"/>
         </scene>
         <!--Movie Details View Controller-->
         <scene sceneID="RhA-qH-SXv">
@@ -147,6 +147,9 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="8aN-dY-6Ta">
+                                <rect key="frame" x="177" y="140" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -156,10 +159,12 @@
                             <constraint firstItem="pGS-u2-bmK" firstAttribute="top" secondItem="Ony-KM-LPh" secondAttribute="bottom" constant="20" id="9GS-ti-GHb"/>
                             <constraint firstAttribute="trailing" secondItem="pGS-u2-bmK" secondAttribute="trailing" constant="10" id="9XG-KZ-TeV"/>
                             <constraint firstItem="Ony-KM-LPh" firstAttribute="top" secondItem="aGe-FH-Mrb" secondAttribute="top" id="9sV-xr-dmg"/>
+                            <constraint firstItem="8aN-dY-6Ta" firstAttribute="centerX" secondItem="Ony-KM-LPh" secondAttribute="centerX" id="EHo-XQ-aob"/>
                             <constraint firstItem="2Gf-Cv-leb" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="6GB-S0-g8z" secondAttribute="trailing" constant="20" id="EYC-kO-26f"/>
                             <constraint firstItem="6GB-S0-g8z" firstAttribute="leading" secondItem="aGe-FH-Mrb" secondAttribute="leading" constant="20" id="LdZ-nn-cet"/>
                             <constraint firstItem="aZR-TF-9i7" firstAttribute="top" secondItem="2Gf-Cv-leb" secondAttribute="bottom" constant="20" id="Mnb-tb-qFY"/>
                             <constraint firstItem="pGS-u2-bmK" firstAttribute="leading" secondItem="aGe-FH-Mrb" secondAttribute="leading" constant="10" id="OUv-fo-zI1"/>
+                            <constraint firstItem="8aN-dY-6Ta" firstAttribute="centerY" secondItem="Ony-KM-LPh" secondAttribute="centerY" id="Uzt-ED-zYg"/>
                             <constraint firstItem="2Gf-Cv-leb" firstAttribute="top" secondItem="hff-w2-8eU" secondAttribute="bottom" constant="20" id="Wkf-ij-Rjg"/>
                             <constraint firstItem="hff-w2-8eU" firstAttribute="leading" secondItem="aGe-FH-Mrb" secondAttribute="leadingMargin" constant="10" id="apZ-H3-E04"/>
                             <constraint firstAttribute="trailing" secondItem="2Gf-Cv-leb" secondAttribute="trailing" constant="20" id="h67-JW-TQl"/>
@@ -168,6 +173,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="activityIndicator" destination="8aN-dY-6Ta" id="Db0-Zp-Ybb"/>
                         <outlet property="movieOverview" destination="hff-w2-8eU" id="hpR-Fa-esq"/>
                         <outlet property="movieTitle" destination="pGS-u2-bmK" id="iCu-QD-Lue"/>
                         <outlet property="playerWebview" destination="Ony-KM-LPh" id="Jru-TH-yn9"/>
@@ -177,7 +183,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f5G-wZ-Zxp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1538" y="772"/>
+            <point key="canvasLocation" x="-1636" y="744"/>
         </scene>
         <!--Filter View Controller-->
         <scene sceneID="X40-9w-HRn">
@@ -296,7 +302,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Csv-fX-xXE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-778.39999999999998" y="71.514242878560722"/>
+            <point key="canvasLocation" x="-1636" y="-604"/>
         </scene>
     </scenes>
 </document>
