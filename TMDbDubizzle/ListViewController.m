@@ -26,9 +26,12 @@
 @interface ListViewController () <UICollectionViewDelegate, UICollectionViewDataSource, FilterViewControllerProtocol>
 
 @property (weak, nonatomic) IBOutlet UICollectionView *listCollectionView;
-@property (nonatomic, strong) NSMutableArray *filteredListOfMovies;
-@property (nonatomic, strong) NSString *titleText;
 @property (weak, nonatomic) IBOutlet UILabel *listTitleLabel;
+
+@property (nonatomic, strong) UIActivityIndicatorView *activityIndicatorView;
+@property (nonatomic, strong) NSString *titleText;
+@property (nonatomic, strong) NSMutableArray *filteredListOfMovies;
+
 @end
 
 @implementation ListViewController
@@ -36,6 +39,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setupCollectionView];
+    self.activityIndicatorView = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(self.view.frame.size.width/2 - 20, self.view.frame.size.height/2 - 20, 40, 40)];
+    [self.view addSubview:self.activityIndicatorView];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -47,9 +52,11 @@
 
 - (void)setupMovieListBasedOnMovieListType:(MovieListType)movieListType {
     __weak typeof(self) weakself = self;
+    [self.activityIndicatorView startAnimating];
     [NetworkingManager loadListOfMoviesBasedOnMovieListType:movieListType withCompletionHandler:^(ListOfMoviesModel *response) {
         weakself.filteredListOfMovies = [response.listOfMovies mutableCopy];
         [weakself.listCollectionView reloadData];
+        [weakself.activityIndicatorView stopAnimating];
     }];
     
     [self addTitleBasedOnMovieListType:movieListType];
@@ -87,14 +94,13 @@
 - (CGSize)collectionView:(UICollectionView *)collectionView
                   layout:(UICollectionViewLayout *)collectionViewLayout
   sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    return CGSizeMake(self.view.frame.size.width, 150);
+    return CGSizeMake(self.view.frame.size.width, 220);
 }
 
 
 #pragma mark - <UICollectionViewDelegate>
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    
     MovieModel *currentMovie = self.filteredListOfMovies[indexPath.row];
     UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
     MovieDetailsViewController *movieDetailsViewController = [mainStoryboard instantiateViewControllerWithIdentifier:NSStringFromClass([MovieDetailsViewController class])];
