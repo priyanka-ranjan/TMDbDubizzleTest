@@ -8,8 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+#import "NetworkingManager.h"
+
 @interface ListViewController : UIViewController
 
+@property (nonatomic, assign) NSInteger pageIndex;
+- (void)setupMovieListBasedOnMovieListType:(MovieListType)movieListType;
 
 @end
 

@@ -27,23 +27,34 @@
 
 @property (weak, nonatomic) IBOutlet UICollectionView *listCollectionView;
 @property (nonatomic, strong) NSMutableArray *filteredListOfMovies;
+@property (nonatomic, strong) NSString *titleText;
+@property (weak, nonatomic) IBOutlet UILabel *listTitleLabel;
 @end
 
 @implementation ListViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     [self setupCollectionView];
+}
 
-    __weak typeof(self) weakself = self;
-    [NetworkingManager loadInitialListOfPopularMoviesWithCompletionHandler:^(ListOfMoviesModel *response) {
-        weakself.filteredListOfMovies = [response.listOfMovies mutableCopy];
-        [weakself.listCollectionView reloadData];
-    }];
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    self.listTitleLabel.text = self.titleText;
 }
 
 #pragma mark - Setup
+
+- (void)setupMovieListBasedOnMovieListType:(MovieListType)movieListType {
+    __weak typeof(self) weakself = self;
+    [NetworkingManager loadListOfMoviesBasedOnMovieListType:movieListType withCompletionHandler:^(ListOfMoviesModel *response) {
+        weakself.filteredListOfMovies = [response.listOfMovies mutableCopy];
+        [weakself.listCollectionView reloadData];
+    }];
+    
+    [self addTitleBasedOnMovieListType:movieListType];
+    
+}
 
 - (void)setupCollectionView {
     self.listCollectionView.delegate = self;
@@ -119,6 +130,29 @@
     
     self.filteredListOfMovies = dateBasedFilteredListOfMovies;
     [self.listCollectionView reloadData];
+    
+}
+
+#pragma mark - Helpers
+
+- (void)addTitleBasedOnMovieListType:(MovieListType)movieListType {
+    
+    switch (movieListType) {
+        case MovieListTypePopular:
+            self.titleText = @"Popular";
+            break;
+        case MovieListTypeTopRated:
+            self.titleText = @"Top Rated";
+            break;
+        case MovieListTypeUpcoming:
+            self.titleText = @"Upcoming";
+            break;
+        case MovieListTypeNowPlaying:
+            self.titleText = @"Now Playing";
+            break;
+        default:
+            break;
+    }
     
 }
 

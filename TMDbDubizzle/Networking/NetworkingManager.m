@@ -16,8 +16,8 @@
 
 @implementation NetworkingManager
 
-+ (void)loadInitialListOfPopularMoviesWithCompletionHandler:(void (^)(ListOfMoviesModel *respose))completion {
-    NSString *baseUrlString = [NSString stringWithFormat:@"%@/popular?api_key=%@&language=en-US&page=1",kBaseURLMovie,kTMDBApiKey];
++ (void)loadListOfMoviesBasedOnMovieListType:(MovieListType)movieListType withCompletionHandler:(void (^)(ListOfMoviesModel *respose))completion {
+    NSString *baseUrlString = [self baseUrlBasedOnMovieListType:movieListType];
     NSURL *baseURL = [NSURL URLWithString:baseUrlString];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:baseURL];
     [request setHTTPMethod:@"GET"];
@@ -59,4 +59,28 @@
     [task resume];
 }
 
+
++ (NSString *)baseUrlBasedOnMovieListType:(MovieListType)movieListType {
+    NSString *movieListTypeKeyword;
+
+    switch (movieListType) {
+        case MovieListTypePopular:
+            movieListTypeKeyword = @"popular";
+            break;
+        case MovieListTypeTopRated:
+            movieListTypeKeyword = @"top_rated";
+            break;
+        case MovieListTypeUpcoming:
+            movieListTypeKeyword = @"upcoming";
+            break;
+        case MovieListTypeNowPlaying:
+            movieListTypeKeyword = @"now_playing";
+            break;
+        default:
+            break;
+    }
+
+    return  [NSString stringWithFormat:@"%@/%@?api_key=%@&language=en-US&page=1",kBaseURLMovie,movieListTypeKeyword, kTMDBApiKey];
+
+}
 @end

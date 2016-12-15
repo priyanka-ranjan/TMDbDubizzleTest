@@ -19,17 +19,27 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="rqA-7c-30b" kind="relationship" relationship="rootViewController" id="6y0-nw-uhD"/>
+                        <segue destination="gdt-Nn-Ktz" kind="relationship" relationship="rootViewController" id="m1m-69-WVY"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="S6k-jb-Idn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2375" y="74"/>
+            <point key="canvasLocation" x="-2404" y="-590"/>
+        </scene>
+        <!--Main Page View Controller-->
+        <scene sceneID="hta-G7-mC9">
+            <objects>
+                <pageViewController storyboardIdentifier="MainPageViewController" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="gdt-Nn-Ktz" customClass="MainPageViewController" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="wmf-U8-OX7"/>
+                </pageViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Vgn-oe-ZU3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1538" y="-591"/>
         </scene>
         <!--List View Controller-->
         <scene sceneID="71L-2x-wbg">
             <objects>
-                <viewController id="rqA-7c-30b" customClass="ListViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ListViewController" id="rqA-7c-30b" customClass="ListViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="YoC-Jq-5hU"/>
                         <viewControllerLayoutGuide type="bottom" id="l3E-54-dAa"/>
@@ -39,8 +49,8 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="usL-KC-OCi">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <rect key="frame" x="20" y="64.5" width="335" height="602.5"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Yz9-BK-rF6">
                                     <size key="itemSize" width="50" height="50"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -58,13 +68,22 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fKO-ZL-WGN">
+                                <rect key="frame" x="26" y="30" width="323" height="26.5"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="usL-KC-OCi" firstAttribute="top" secondItem="fKO-ZL-WGN" secondAttribute="bottom" constant="8" id="0pB-Xo-kJE"/>
                             <constraint firstItem="l3E-54-dAa" firstAttribute="top" secondItem="usL-KC-OCi" secondAttribute="bottom" id="GPo-PS-2xj"/>
-                            <constraint firstItem="usL-KC-OCi" firstAttribute="top" secondItem="YoC-Jq-5hU" secondAttribute="bottom" id="JxQ-Hy-OhG"/>
-                            <constraint firstAttribute="trailing" secondItem="usL-KC-OCi" secondAttribute="trailing" id="thT-gd-CAC"/>
-                            <constraint firstItem="usL-KC-OCi" firstAttribute="leading" secondItem="Sj0-mb-cot" secondAttribute="leading" id="zug-bz-HeW"/>
+                            <constraint firstItem="fKO-ZL-WGN" firstAttribute="top" secondItem="YoC-Jq-5hU" secondAttribute="bottom" constant="10" id="QTi-By-cj6"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="fKO-ZL-WGN" secondAttribute="trailing" constant="10" id="kcZ-gf-dbW"/>
+                            <constraint firstItem="fKO-ZL-WGN" firstAttribute="leading" secondItem="Sj0-mb-cot" secondAttribute="leadingMargin" constant="10" id="ox9-zd-v33"/>
+                            <constraint firstAttribute="trailing" secondItem="usL-KC-OCi" secondAttribute="trailing" constant="20" id="thT-gd-CAC"/>
+                            <constraint firstItem="usL-KC-OCi" firstAttribute="leading" secondItem="Sj0-mb-cot" secondAttribute="leading" constant="20" id="zug-bz-HeW"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="SN0-VU-LVe">
@@ -77,6 +96,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="listCollectionView" destination="usL-KC-OCi" id="QVy-GK-Y6b"/>
+                        <outlet property="listTitleLabel" destination="fKO-ZL-WGN" id="2R3-U4-hSw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="t1E-La-3Iw" userLabel="First Responder" sceneMemberID="firstResponder"/>

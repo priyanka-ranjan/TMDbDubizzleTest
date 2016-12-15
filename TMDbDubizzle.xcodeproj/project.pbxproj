@@ -15,6 +15,7 @@
 		BB67AA911E027B6C007322BD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB67AA8F1E027B6C007322BD /* LaunchScreen.storyboard */; };
 		BBBA664E1E02B52300344FCF /* FilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBBA664D1E02B52300344FCF /* FilterViewController.m */; };
 		BBBA66511E02C3D800344FCF /* MovieDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBBA66501E02C3D800344FCF /* MovieDetailsViewController.m */; };
+		BBBA66541E02CA2000344FCF /* MainPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBBA66531E02CA2000344FCF /* MainPageViewController.m */; };
 		BBC0B81F1E02812D00D187BF /* NetworkingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BBC0B81E1E02812D00D187BF /* NetworkingManager.m */; };
 		BBC0B8231E028D1E00D187BF /* MovieModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BBC0B8221E028D1E00D187BF /* MovieModel.m */; };
 		BBC0B8281E0296AE00D187BF /* MovieCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BBC0B8261E0296AE00D187BF /* MovieCollectionViewCell.m */; };
@@ -53,6 +54,8 @@
 		BBBA664D1E02B52300344FCF /* FilterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterViewController.m; sourceTree = "<group>"; };
 		BBBA664F1E02C3D800344FCF /* MovieDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovieDetailsViewController.h; sourceTree = "<group>"; };
 		BBBA66501E02C3D800344FCF /* MovieDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovieDetailsViewController.m; sourceTree = "<group>"; };
+		BBBA66521E02CA2000344FCF /* MainPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainPageViewController.h; sourceTree = "<group>"; };
+		BBBA66531E02CA2000344FCF /* MainPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainPageViewController.m; sourceTree = "<group>"; };
 		BBC0B81D1E02812D00D187BF /* NetworkingManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkingManager.h; sourceTree = "<group>"; };
 		BBC0B81E1E02812D00D187BF /* NetworkingManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkingManager.m; sourceTree = "<group>"; };
 		BBC0B8211E028D1E00D187BF /* MovieModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovieModel.h; sourceTree = "<group>"; };
@@ -148,6 +151,8 @@
 				BBBA664D1E02B52300344FCF /* FilterViewController.m */,
 				BBBA664F1E02C3D800344FCF /* MovieDetailsViewController.h */,
 				BBBA66501E02C3D800344FCF /* MovieDetailsViewController.m */,
+				BBBA66521E02CA2000344FCF /* MainPageViewController.h */,
+				BBBA66531E02CA2000344FCF /* MainPageViewController.m */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -306,6 +311,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BBBA66541E02CA2000344FCF /* MainPageViewController.m in Sources */,
 				BB67AA891E027B6C007322BD /* ListViewController.m in Sources */,
 				BBBA66511E02C3D800344FCF /* MovieDetailsViewController.m in Sources */,
 				BBC0B81F1E02812D00D187BF /* NetworkingManager.m in Sources */,

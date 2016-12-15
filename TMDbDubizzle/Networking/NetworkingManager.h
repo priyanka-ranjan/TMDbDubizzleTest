@@ -12,8 +12,16 @@
 #import "ListOfMoviesModel.h"
 #import "MovieModel.h"
 
+
+typedef NS_ENUM(NSUInteger, MovieListType) {
+    MovieListTypePopular,
+    MovieListTypeTopRated,
+    MovieListTypeUpcoming,
+    MovieListTypeNowPlaying
+};
+
 @interface NetworkingManager : NSObject
 
-+ (void)loadInitialListOfPopularMoviesWithCompletionHandler:(void(^)(ListOfMoviesModel* response))completion;
++ (void)loadListOfMoviesBasedOnMovieListType:(MovieListType)movieListType withCompletionHandler:(void (^)(ListOfMoviesModel *respose))completion;
 
 @end
