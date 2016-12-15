@@ -9,6 +9,9 @@
 #import "MovieDetailsViewController.h"
 
 
+//Networking
+#import "NetworkingManager.h"
+
 @interface MovieDetailsViewController ()
 
 @property (nonatomic, strong) MovieModel *movieModel;
@@ -18,17 +21,15 @@
 @property (weak, nonatomic) IBOutlet UILabel *movieOverview;
 @property (weak, nonatomic) IBOutlet UILabel *releaseDate;
 @property (weak, nonatomic) IBOutlet UILabel *voteCount;
+@property (weak, nonatomic) IBOutlet UIWebView *playerWebview;
 
+@property (nonatomic, strong) ListOfMovieVideos *listOfMovieVideos;
 @end
 
 @implementation MovieDetailsViewController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
-}
-
 - (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     [self setupViewBasedOnMovie];
 }
 
@@ -36,29 +37,44 @@
 
 - (void)setupWithMovieModel:(MovieModel *)movieModel {
     self.movieModel = movieModel;
+    
+    __weak typeof(self) weakSelf = self;
+    [NetworkingManager loadMovieVideosFromMovieId:[movieModel.movieId stringValue]
+                            withCompletionHandler:^(ListOfMovieVideos *response) {
+                                weakSelf.listOfMovieVideos = response;
+                                
+                                dispatch_async(dispatch_get_main_queue(), ^{
+                                    [weakSelf setupPlayerView];
+                                });
+                                
+
+    }];
+}
+
+- (void)setupPlayerView {
+    NSURL *youtubeURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://www.youtube.com/embed/%@",[self youtubeIdFromMovieVideos]]];
+    self.playerWebview.allowsInlineMediaPlayback = YES;
+    [self.playerWebview loadRequest:[NSURLRequest requestWithURL:youtubeURL]];
 }
 
 - (void)setupViewBasedOnMovie {
-    NSString *imagePathString = [NSString stringWithFormat:@"https://image.tmdb.org/t/p/w500%@",self.movieModel.posterPath];
-    NSURL *imageURL = [NSURL URLWithString:imagePathString];
-
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
-        NSData *imageData = [NSData dataWithContentsOfURL:imageURL];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            self.posterImage.image= [UIImage imageWithData:imageData];
-        });
-    });
-    
-    
     self.movieTitle.text = self.movieModel.title;
     self.movieOverview.text = self.movieModel.overview;
-    
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     dateFormatter.dateFormat = @"yyyy-mm-dd";
     self.releaseDate.text = [dateFormatter stringFromDate:self.movieModel.releaseDate];
     self.voteCount.text = [NSString stringWithFormat:@"Vote Count: %@",[self.movieModel.voteCount stringValue]];
     
+}
+
+- (NSString *)youtubeIdFromMovieVideos {
+    for (MovieVideoModel *movieVideo in self.listOfMovieVideos.videos) {
+        if ([movieVideo.site isEqualToString:@"YouTube"]) {
+            return movieVideo.youtubeId;
+        }
+    }
+    return nil;
 }
 
 @end

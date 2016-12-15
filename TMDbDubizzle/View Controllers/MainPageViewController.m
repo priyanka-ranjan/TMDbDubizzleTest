@@ -30,7 +30,6 @@
                    direction:UIPageViewControllerNavigationDirectionForward
                     animated:YES
                   completion:nil];
-    NSLog(@"----- the nav controller is: %@", self.navigationController);
 }
 
 #pragma mark - Page View Controller Data Source

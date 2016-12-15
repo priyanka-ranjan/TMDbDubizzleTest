@@ -16,6 +16,8 @@
 		BBBA664E1E02B52300344FCF /* FilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBBA664D1E02B52300344FCF /* FilterViewController.m */; };
 		BBBA66511E02C3D800344FCF /* MovieDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBBA66501E02C3D800344FCF /* MovieDetailsViewController.m */; };
 		BBBA66541E02CA2000344FCF /* MainPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBBA66531E02CA2000344FCF /* MainPageViewController.m */; };
+		BBBA66581E032BFF00344FCF /* MovieVideoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BBBA66571E032BFF00344FCF /* MovieVideoModel.m */; };
+		BBBA665B1E032CC400344FCF /* ListOfMovieVideos.m in Sources */ = {isa = PBXBuildFile; fileRef = BBBA665A1E032CC400344FCF /* ListOfMovieVideos.m */; };
 		BBC0B81F1E02812D00D187BF /* NetworkingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BBC0B81E1E02812D00D187BF /* NetworkingManager.m */; };
 		BBC0B8231E028D1E00D187BF /* MovieModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BBC0B8221E028D1E00D187BF /* MovieModel.m */; };
 		BBC0B8281E0296AE00D187BF /* MovieCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BBC0B8261E0296AE00D187BF /* MovieCollectionViewCell.m */; };
@@ -56,6 +58,10 @@
 		BBBA66501E02C3D800344FCF /* MovieDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovieDetailsViewController.m; sourceTree = "<group>"; };
 		BBBA66521E02CA2000344FCF /* MainPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainPageViewController.h; sourceTree = "<group>"; };
 		BBBA66531E02CA2000344FCF /* MainPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainPageViewController.m; sourceTree = "<group>"; };
+		BBBA66561E032BFF00344FCF /* MovieVideoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovieVideoModel.h; sourceTree = "<group>"; };
+		BBBA66571E032BFF00344FCF /* MovieVideoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovieVideoModel.m; sourceTree = "<group>"; };
+		BBBA66591E032CC400344FCF /* ListOfMovieVideos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListOfMovieVideos.h; sourceTree = "<group>"; };
+		BBBA665A1E032CC400344FCF /* ListOfMovieVideos.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListOfMovieVideos.m; sourceTree = "<group>"; };
 		BBC0B81D1E02812D00D187BF /* NetworkingManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkingManager.h; sourceTree = "<group>"; };
 		BBC0B81E1E02812D00D187BF /* NetworkingManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkingManager.m; sourceTree = "<group>"; };
 		BBC0B8211E028D1E00D187BF /* MovieModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovieModel.h; sourceTree = "<group>"; };
@@ -164,6 +170,10 @@
 				BBC0B8221E028D1E00D187BF /* MovieModel.m */,
 				BBC0BCD21E029D7900D187BF /* ListOfMoviesModel.h */,
 				BBC0BCD31E029D7900D187BF /* ListOfMoviesModel.m */,
+				BBBA66561E032BFF00344FCF /* MovieVideoModel.h */,
+				BBBA66571E032BFF00344FCF /* MovieVideoModel.m */,
+				BBBA66591E032CC400344FCF /* ListOfMovieVideos.h */,
+				BBBA665A1E032CC400344FCF /* ListOfMovieVideos.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -311,6 +321,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BBBA66581E032BFF00344FCF /* MovieVideoModel.m in Sources */,
+				BBBA665B1E032CC400344FCF /* ListOfMovieVideos.m in Sources */,
 				BBBA66541E02CA2000344FCF /* MainPageViewController.m in Sources */,
 				BB67AA891E027B6C007322BD /* ListViewController.m in Sources */,
 				BBBA66511E02C3D800344FCF /* MovieDetailsViewController.m in Sources */,

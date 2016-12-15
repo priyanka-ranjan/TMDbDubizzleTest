@@ -41,6 +41,7 @@
 
 + (NSDictionary<NSString *, NSString *> *)JSONKeyPathsByPropertyKey {
     return @{
+             @"movieId" : @"id",
              @"title" : @"original_title",
              @"backdropPath":  @"backdrop_path" ,
              @"posterPath" : @"poster_path" ,

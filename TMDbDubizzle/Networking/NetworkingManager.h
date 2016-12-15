@@ -11,7 +11,8 @@
 //Models
 #import "ListOfMoviesModel.h"
 #import "MovieModel.h"
-
+#import "ListOfMovieVideos.h"
+#import "MovieVideoModel.h"
 
 typedef NS_ENUM(NSUInteger, MovieListType) {
     MovieListTypePopular,
@@ -22,6 +23,10 @@ typedef NS_ENUM(NSUInteger, MovieListType) {
 
 @interface NetworkingManager : NSObject
 
-+ (void)loadListOfMoviesBasedOnMovieListType:(MovieListType)movieListType withCompletionHandler:(void (^)(ListOfMoviesModel *respose))completion;
++ (void)loadListOfMoviesBasedOnMovieListType:(MovieListType)movieListType
+                       withCompletionHandler:(void (^)(ListOfMoviesModel *respose))completion;
++ (void)loadMovieVideosFromMovieId:(NSString *)movieID
+             withCompletionHandler:(void(^)(ListOfMovieVideos *response))completion;
+
 
 @end

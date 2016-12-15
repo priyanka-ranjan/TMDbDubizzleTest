@@ -11,6 +11,7 @@
 
 @interface MovieModel : MTLModel <MTLJSONSerializing>
 
+@property (nonatomic, strong) NSNumber *movieId;
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, strong) NSString *backdropPath;
 @property (nonatomic, strong) NSString *posterPath;

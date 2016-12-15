@@ -25,12 +25,15 @@
     NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]
                                                           delegate:nil
                                                      delegateQueue:[NSOperationQueue mainQueue]];
-    NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+    NSURLSessionDataTask *task = [session dataTaskWithRequest:request
+                                            completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         
         NSError *jsonError;
         
         if (data) {
-            NSDictionary *jsonData = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&jsonError];
+            NSDictionary *jsonData = [NSJSONSerialization JSONObjectWithData:data
+                                                                     options:NSJSONReadingMutableContainers
+                                                                       error:&jsonError];
             
             if (jsonError) {
                 NSLog(@"---- The error is %@", jsonError);
@@ -46,11 +49,8 @@
                     completion(listOfMovies);
                 } else {
                     NSLog(@"---- The error is %@", mtlError);
-
+                    
                 }
-                
-                
-//                NSLog(@"---- The parsed data is: %@", jsonData);
             }
             
         }
@@ -59,6 +59,39 @@
     [task resume];
 }
 
++ (void)loadMovieVideosFromMovieId:(NSString *)movieID withCompletionHandler:(void(^)(ListOfMovieVideos *response))completion{
+    NSString *baseUrl = [NSString stringWithFormat:@"%@/%@/videos?api_key=%@&language=en-US",kBaseURLMovie, movieID, kTMDBApiKey];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:baseUrl]];
+    [request setHTTPMethod:@"GET"];
+    
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:nil delegateQueue:[NSOperationQueue mainQueue]];
+    NSURLSessionDataTask *task = [session dataTaskWithRequest:request
+                                            completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+                                                
+                                                NSError *jsonError;
+                                                
+                                                NSDictionary *jsonData = [NSJSONSerialization JSONObjectWithData:data
+                                                                                                         options:NSJSONReadingMutableContainers
+                                                                                                           error:&jsonError];
+                                                
+                                                if (jsonData) {
+                                                    NSError *mtlError;
+                                                    
+                                                    ListOfMovieVideos *videos = [MTLJSONAdapter modelOfClass:ListOfMovieVideos.class
+                                                                                          fromJSONDictionary:jsonData
+                                                                                                       error:&mtlError];
+                                                    
+                                                    if (!mtlError) {
+                                                        completion(videos);
+                                                    }
+                                                }
+                                                
+                                                
+                                            }];
+    [task resume];
+}
+
+#pragma mark - Helpers
 
 + (NSString *)baseUrlBasedOnMovieListType:(MovieListType)movieListType {
     NSString *movieListTypeKeyword;
@@ -81,6 +114,6 @@
     }
 
     return  [NSString stringWithFormat:@"%@/%@?api_key=%@&language=en-US&page=1",kBaseURLMovie,movieListTypeKeyword, kTMDBApiKey];
-
 }
+
 @end
