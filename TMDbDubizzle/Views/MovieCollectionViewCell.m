@@ -28,7 +28,7 @@
 - (void)prepareForReuse {
     [super prepareForReuse];
     self.movieTitle.text = nil;
-    self.backgroundImage.image = nil;
+    self.backgroundImage.image = [UIImage imageNamed:@"placeholderImage.png"];
     self.releaseDate.text = nil;
     self.voteAverage.text = nil;
 }
@@ -48,6 +48,7 @@
 }
 
 - (void)configureMovieImageWithPath:(NSString *)backdropPath {
+    self.backgroundImage.image = [UIImage imageNamed:@"placeholderImage.png"];
     NSString *imagePathString = [NSString stringWithFormat:@"https://image.tmdb.org/t/p/w500%@",backdropPath];
     NSURL *imageURL = [NSURL URLWithString:imagePathString];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
