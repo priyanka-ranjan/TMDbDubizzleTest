@@ -41,7 +41,7 @@
     NSInteger index = ((ListViewController *)viewController).pageIndex;
     index++;
     if (index == 4) {
-        return nil;
+        index = 0;
     }
     
     return [self viewControllerAtIndex:index];
@@ -53,7 +53,7 @@
     NSInteger index = ((ListViewController *)viewController).pageIndex;
     index--;
     if (index == -1) {
-        return nil;
+        index = 3;
     }
     
     return [self viewControllerAtIndex:index];
