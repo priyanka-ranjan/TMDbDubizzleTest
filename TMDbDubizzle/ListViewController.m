@@ -20,6 +20,8 @@
 
 //View Controllers
 #import "FilterViewController.h"
+#import "MovieDetailsViewController.h"
+
 
 @interface ListViewController () <UICollectionViewDelegate, UICollectionViewDataSource, FilterViewControllerProtocol>
 
@@ -81,6 +83,13 @@
 #pragma mark - <UICollectionViewDelegate>
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    
+    MovieModel *currentMovie = self.filteredListOfMovies[indexPath.row];
+    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+    MovieDetailsViewController *movieDetailsViewController = [mainStoryboard instantiateViewControllerWithIdentifier:NSStringFromClass([MovieDetailsViewController class])];
+    [movieDetailsViewController setupWithMovieModel:currentMovie];
+    [self.navigationController pushViewController:movieDetailsViewController animated:YES];
+    
     
 }
 
