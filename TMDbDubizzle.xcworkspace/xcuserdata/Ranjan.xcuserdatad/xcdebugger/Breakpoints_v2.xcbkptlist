@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TMDbDubizzle/ListViewController.m"
-            timestampString = "503509871.120625"
+            timestampString = "503512981.537988"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "138"
-            endingLineNumber = "138"
+            startingLineNumber = "157"
+            endingLineNumber = "157"
             landmarkName = "-filteredWithMinYear:maxYear:"
             landmarkType = "7">
          </BreakpointContent>
@@ -25,29 +25,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "TMDbDubizzle/View Controllers/MainPageViewController.m"
-            timestampString = "503502932.936197"
+            filePath = "TMDbDubizzle/ListViewController.m"
+            timestampString = "503512950.792633"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "39"
-            endingLineNumber = "39"
-            landmarkName = "-pageViewController:viewControllerAfterViewController:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "TMDbDubizzle/View Controllers/MainPageViewController.m"
-            timestampString = "503502979.499378"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "52"
-            endingLineNumber = "52"
-            landmarkName = "-pageViewController:viewControllerBeforeViewController:"
+            startingLineNumber = "87"
+            endingLineNumber = "87"
+            landmarkName = "-setupFilterBarButtonItem"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

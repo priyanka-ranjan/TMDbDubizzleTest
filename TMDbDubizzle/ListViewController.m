@@ -39,8 +39,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setupCollectionView];
-    self.activityIndicatorView = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(self.view.frame.size.width/2 - 20, self.view.frame.size.height/2 - 20, 40, 40)];
-    [self.view addSubview:self.activityIndicatorView];
+    [self setupActivityIndicator];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -48,7 +48,26 @@
     self.listTitleLabel.text = self.titleText;
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self setupFilterBarButtonItem];
+}
+
 #pragma mark - Setup
+
+- (void)setupActivityIndicator {
+    self.activityIndicatorView = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(self.view.frame.size.width/2 - 20, self.view.frame.size.height/2 - 20, 40, 40)];
+    [self.view addSubview:self.activityIndicatorView];
+}
+
+- (void)setupCollectionView {
+    self.listCollectionView.delegate = self;
+    self.listCollectionView.dataSource = self;
+    UINib *nib = [UINib nibWithNibName:NSStringFromClass([MovieCollectionViewCell class])
+                                bundle:[NSBundle mainBundle]];
+    [self.listCollectionView registerNib:nib
+              forCellWithReuseIdentifier:NSStringFromClass([MovieCollectionViewCell class])];
+}
 
 - (void)setupMovieListBasedOnMovieListType:(MovieListType)movieListType {
     __weak typeof(self) weakself = self;
@@ -63,13 +82,13 @@
     
 }
 
-- (void)setupCollectionView {
-    self.listCollectionView.delegate = self;
-    self.listCollectionView.dataSource = self;
-    
-    UINib *nib = [UINib nibWithNibName:NSStringFromClass([MovieCollectionViewCell class]) bundle:[NSBundle mainBundle]];
-    
-    [self.listCollectionView registerNib:nib forCellWithReuseIdentifier:NSStringFromClass([MovieCollectionViewCell class])];
+- (void)setupFilterBarButtonItem {
+    UIBarButtonItem *filterBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Filter"
+                                                                            style:UIBarButtonItemStyleDone
+                                                                           target:self
+                                                                           action:@selector(filterButtonTapped:)];
+    self.parentViewController.navigationItem.rightBarButtonItem = filterBarButtonItem;
+    self.parentViewController.navigationItem.title= @"dsjklfjls";
 }
 
 #pragma mark - <UICollectionViewDataSource>
