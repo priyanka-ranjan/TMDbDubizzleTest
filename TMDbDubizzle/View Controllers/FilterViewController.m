@@ -14,17 +14,20 @@
 @property (weak, nonatomic) IBOutlet UITextField *maxYearTextField;
 
 @property (nonatomic, strong) UIDatePicker *datePicker;
+
+@property (nonatomic, strong) NSDate *minYearDate;
+@property (nonatomic, strong) NSDate *maxYearDate;
 @end
 
 @implementation FilterViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
     [self setupDatePicker];
     [self.minYearTextField setInputView:self.datePicker];
     [self.maxYearTextField setInputView:self.datePicker];
-
+    
 }
 
 #pragma mark - Setup
@@ -34,7 +37,7 @@
     self.datePicker.datePickerMode = UIDatePickerModeDate;
     self.datePicker.hidden = NO;
     [self.datePicker setMaximumDate:[NSDate date]];
-
+    
     [self.datePicker addTarget:self action:@selector(dateTextField:) forControlEvents:UIControlEventValueChanged];
 }
 
@@ -49,8 +52,10 @@
     
     if ([self.minYearTextField isFirstResponder]) {
         self.minYearTextField.text = [NSString stringWithFormat:@"%@",dateString];
+        self.minYearDate = eventDate;
     } else {
         self.maxYearTextField.text = [NSString stringWithFormat:@"%@",dateString];
+        self.maxYearDate = eventDate;
     }
 }
 
@@ -58,7 +63,7 @@
 
 - (IBAction)doneButtonTapped:(id)sender {
     if ([self.delegate conformsToProtocol:@protocol(FilterViewControllerProtocol)]) {
-        [self.delegate filteredWithMinYear:self.minYearTextField.text maxYear:self.maxYearTextField.text];
+        [self.delegate filteredWithMinYear:self.minYearDate maxYear:self.maxYearDate];
     }
     [self dismissViewControllerAnimated:YES completion:nil];
 }

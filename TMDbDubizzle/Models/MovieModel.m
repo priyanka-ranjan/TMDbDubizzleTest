@@ -51,5 +51,13 @@
              };
 }
 
++ (NSValueTransformer *)releaseDateJSONTransformer {
+    return [MTLValueTransformer transformerUsingForwardBlock:^id(NSString *dateString, BOOL *success, NSError *__autoreleasing *error) {
+        
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"yyyy-mm-dd"];
+        return [dateFormatter dateFromString:dateString];
+    }];
+}
 
 @end

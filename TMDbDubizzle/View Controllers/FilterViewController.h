@@ -10,7 +10,7 @@
 
 @protocol FilterViewControllerProtocol <NSObject>
 
-- (void)filteredWithMinYear:(NSString *)minYear maxYear:(NSString *)maxYear;
+- (void)filteredWithMinYear:(NSDate *)minYear maxYear:(NSDate *)maxYear;
 
 @end
 

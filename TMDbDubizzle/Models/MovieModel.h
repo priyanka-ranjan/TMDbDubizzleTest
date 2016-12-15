@@ -17,7 +17,7 @@
 @property (nonatomic, strong) NSString *overview;
 @property (nonatomic, strong) NSNumber *voteAverage;
 @property (nonatomic, strong) NSNumber *voteCount;
-@property (nonatomic, strong) NSString *releaseDate;
+@property (nonatomic, strong) NSDate *releaseDate;
 
 
 @end

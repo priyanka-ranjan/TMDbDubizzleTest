@@ -24,8 +24,7 @@
 @interface ListViewController () <UICollectionViewDelegate, UICollectionViewDataSource, FilterViewControllerProtocol>
 
 @property (weak, nonatomic) IBOutlet UICollectionView *listCollectionView;
-@property (nonatomic, strong) ListOfMoviesModel *listModel;
-
+@property (nonatomic, strong) NSMutableArray *filteredListOfMovies;
 @end
 
 @implementation ListViewController
@@ -37,7 +36,7 @@
 
     __weak typeof(self) weakself = self;
     [NetworkingManager loadInitialListOfPopularMoviesWithCompletionHandler:^(ListOfMoviesModel *response) {
-        weakself.listModel = response;
+        weakself.filteredListOfMovies = [response.listOfMovies mutableCopy];
         [weakself.listCollectionView reloadData];
     }];
 }
@@ -56,7 +55,7 @@
 #pragma mark - <UICollectionViewDataSource>
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return self.listModel.listOfMovies.count;
+    return self.filteredListOfMovies.count;
 }
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
@@ -66,7 +65,7 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     MovieCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([MovieCollectionViewCell class])
                                                                               forIndexPath:indexPath];
-    MovieModel *currentMovie = self.listModel.listOfMovies[indexPath.row];
+    MovieModel *currentMovie = self.filteredListOfMovies[indexPath.row];
     [cell setupCellWithMovieModel:currentMovie];
     
     return cell;
@@ -97,10 +96,20 @@
 
 #pragma mark - <FilterViewControllerProtocol>
 
-- (void)filteredWithMinYear:(NSString *)minYear maxYear:(NSString *)maxYear {
+- (void)filteredWithMinYear:(NSDate *)minDate maxYear:(NSDate *)maxDate {
     
-    //Parse the data based on years
-    //[self.listCollectionView reloadData];
+    NSMutableArray *dateBasedFilteredListOfMovies = [NSMutableArray array];
+    
+    for (MovieModel *movie in self.filteredListOfMovies) {
+        BOOL isAfterMinDate = [movie.releaseDate compare:minDate] == NSOrderedDescending;
+        BOOL isBeforeMaxDate = [movie.releaseDate compare:maxDate] == NSOrderedAscending;
+        if(isAfterMinDate && isBeforeMaxDate) {
+            [dateBasedFilteredListOfMovies addObject:movie];
+        }
+    }
+    
+    self.filteredListOfMovies = dateBasedFilteredListOfMovies;
+    [self.listCollectionView reloadData];
     
 }
 
