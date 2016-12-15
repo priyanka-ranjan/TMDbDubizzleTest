@@ -89,8 +89,9 @@
                                                                             style:UIBarButtonItemStyleDone
                                                                            target:self
                                                                            action:@selector(filterButtonTapped:)];
+    filterBarButtonItem.tintColor = [UIColor blackColor];
     self.parentViewController.navigationItem.rightBarButtonItem = filterBarButtonItem;
-    self.parentViewController.navigationItem.title= @"dsjklfjls";
+    self.parentViewController.navigationItem.title= @"Movies";
 }
 
 #pragma mark - <UICollectionViewDataSource>
