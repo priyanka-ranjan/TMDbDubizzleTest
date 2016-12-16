@@ -7,5 +7,7 @@ target 'TMDbDubizzle' do
 
   # Pods for TMDbDubizzle
  pod ‘Mantle’
+ pod 'AFNetworking'
+
 
 end

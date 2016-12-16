@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>AFNetworking.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Mantle.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -17,12 +22,17 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>3B3289AB74230984553E7F534D66CA1C</key>
+		<key>7E5DF8C593E84A18C39A6094CAFD9BB7</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>8E2F85A9EA167EFA71B3DCB5DF170059</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>AFAFB55453D161D2BB5CFB30C68A54D5</key>
 		<dict>
 			<key>primary</key>
 			<true/>
